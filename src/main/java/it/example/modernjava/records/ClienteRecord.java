@@ -40,26 +40,9 @@ public record ClienteRecord(int id, String nome) {
 }
 
 /**
- * Record generico: si puo' scrivere {@code Risultato<String>}, {@code Risultato<Integer>}, ...
- * come per una classe generica qualsiasi.
- *
- * @param ok    indica se l'operazione e' andata a buon fine
- * @param valore valore prodotto, presente solo se {@code ok} e' true
- * @param <T>   tipo del valore
- */
-public record Risultato<T>(boolean ok, T valore) {
-
-    public static <T> Risultato<T> ok(T valore) {
-        return new Risultato<>(true, valore);
-    }
-
-    public static <T> Risultato<T> errore() {
-        return new Risultato<>(false, null);
-    }
-}
-
-/**
  * Record "compattato": senza il par {@code nome; nome()}, la lista dei campi va fra parentesi.
+ * <p>
+ * Il record generico {@code Risultato<T>} e' in {@code Risultato.java}.
  */
 record Pagina<T>(int numero, List<T> contenuto) {
 

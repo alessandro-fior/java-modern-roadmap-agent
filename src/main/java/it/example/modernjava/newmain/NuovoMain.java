@@ -16,15 +16,28 @@ import java.util.List;
  * {@code java -cp target/classes it.example.modernjava.newmain.NuovoMain}.
  * <p>
  * {@code java.lang.IO} e' la classe nuova introdotta da Java 25 per la console:
- * {@code IO.println}, {@code IO.print}, {@code IO.printf}, {@code IO.readln},
- * {@code IO.readlnPrompt}. Sta in {@code java.lang}, quindi e' disponibile senza import in
- * qualsiasi programma, e funziona anche quando l'input non e' una console reale
- * (per esempio in un test).
+ * {@code IO.println()}, {@code IO.println(Object)}, {@code IO.print(Object)},
+ * {@code IO.readln()} e {@code IO.readln(String prompt)}. Sta in {@code java.lang}, quindi e'
+ * disponibile senza import in qualsiasi programma, e funziona anche quando l'input non e' una
+ * console reale (per esempio in un test).
+ * <p>
+ * Attenzione: i metodi sono {@code static} ma <b>non</b> sono importati automaticamente nei
+ * compact source file: va scritto {@code IO.println(...)} esplicitamente.
+ * {@code IO.readln()} restituisce {@code null} quando l'input finisce.
  */
 public final class NuovoMain {
 
     /** Campo dell'istanza: in un {@code main} di istanza {@code this} esiste. */
     private final List<String> diario = List.of("Java 5", "Java 8", "Java 25");
+
+    /**
+     * Accesso al dato dell'istanza: in un {@code main} di istanza i campi dell'oggetto sono
+     * raggiungibili come in qualsiasi altro metodo. Serve anche ai test, che non hanno bisogno
+     * di passare dalla riga di comando per verificare lo stato.
+     */
+    List<String> diario() {
+        return diario;
+    }
 
     /**
      * Il nuovo punto di ingresso: niente {@code public}, niente {@code static}, niente {@code String[]}.

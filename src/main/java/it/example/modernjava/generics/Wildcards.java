@@ -22,16 +22,21 @@ public final class Wildcards {
     }
 
     /**
-     * {@code List<?>}: posso leggere, ma solo come Object. Non posso scrivere nulla
-     * (a parte {@code null}).
+     * {@code List<?>}: il tipo esatto e' ignoto. Si puo' leggere, ma solo come {@code Object},
+     * e non si puo' scrivere nulla (a parte {@code null}).
      */
     public static void wildcardIllimitato() {
-        List<?> valori = new ArrayList<String>();
-        valori.add("Mario");
-        // valori.add(42);   // <-- non compila: il tipo esatto e' ignoto
+        List<String> sorgente = new ArrayList<>();
+        sorgente.add("Mario");
+        sorgente.add("Luigi");
+
+        List<?> valori = sorgente;
+
+        // valori.add("Anna");   // <-- non compila: il tipo esatto e' ignoto
 
         Object primo = valori.get(0);
         System.out.println("List<?>              -> primo = " + primo);
+        System.out.println("List<?>              -> size  = " + valori.size());
     }
 
     /**

@@ -12,10 +12,11 @@ import java.util.Map;
  * <b>una volta sola</b>, al primo assegnamento, e poi resta immutabile esattamente come
  * un tipo scritto esplicitamente.
  * <p>
- * {@code var} si puo' usare solo per: variabili locali, parametri dei metodi, componenti
- * di array e come tipo di ritorno di un metodo.
- * {@code var} non si puo' usare per: campi, parametri dei metodi di interfaccia/abstract,
- * {@code null} senza informazioni di tipo, e non ammette un tipo esplicito.
+ * {@code var} si puo' usare solo per: variabili locali, parametri dei metodi concreti
+ * (non astratti, non di interfaccia) e componenti di array.
+ * {@code var} <b>non</b> si puo' usare per: campi, tipo di ritorno di un metodo,
+ * parametri di metodi astratti o di interfaccia, {@code null} senza informazioni di tipo,
+ * e non ammette un tipo esplicito.
  */
 public final class VarBasics {
 

@@ -10,30 +10,11 @@ import java.util.function.Supplier;
 /**
  * Le interfacce funzionali della libreria standard (<b>Java 8</b>, package {@code java.util.function}).
  * <p>
- * Una {@code @FunctionalInterface} ha esattamente un metodo astratto. Quando si dichiara
- * {@code @FunctionalInterface} il compilatore verifica la regola, e serve anche alla
- * documentazione: e' il " contratto" che il metodo accetta come comportamento.
- */
-@FunctionalInterface
-public interface Operazione {
-
-    int applica(int a, int b);
-
-    default String descrizione() {
-        return "operazione su due interi";
-    }
-
-    static Operazione somma() {
-        return (a, b) -> a + b;
-    }
-
-    default Operazione piu(int costante) {
-        return (a, b) -> applica(a, b) + costante;
-    }
-}
-
-/**
- * PRIMA / DOPO: passare comportamento con una sola classe annidata.
+ * Una {@code @FunctionalInterface} ha esattamente un metodo astratto: dichiarandola, il
+ * compilatore verifica la regola, e la documentazione dice al lettore "qui si puo' passare
+ * un comportamento". {@link Operazione} ne e' un esempio scritto in casa, ed e' in
+ * {@code Operazione.java}: in Java un tipo pubblico di primo livello deve stare in un file
+ * con lo stesso nome.
  */
 public final class FunctionalInterfaces {
 
@@ -58,10 +39,10 @@ public final class FunctionalInterfaces {
         Operazione addizione = Operazione.somma();
         Operazione moltiplicazione = (a, b) -> a * b;
 
-System.out.println("addizione       -> " + addizione.applica(20, 22));
-        System.out.println("moltiplicazione -> " + moltiplicazione.applica(20, 2));
-        System.out.println("addizione.piu(1)-> " + addizione.piu(1).applica(1, 2));
-        System.out.println("descrizione     -> " + addizione.descrizione());
+        System.out.println("addizione        -> " + addizione.applica(20, 22));
+        System.out.println("moltiplicazione  -> " + moltiplicazione.applica(20, 2));
+        System.out.println("addizione.piu(1) -> " + addizione.piu(1).applica(1, 2));
+        System.out.println("descrizione      -> " + addizione.descrizione());
     }
 
     /**

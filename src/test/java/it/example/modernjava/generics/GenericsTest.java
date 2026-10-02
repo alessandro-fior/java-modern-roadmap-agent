@@ -72,11 +72,15 @@ class GenericsTest {
     }
 
     @Test
-    @DisplayName("List<?> puo' essere letto solo come Object")
+    @DisplayName("List<?> puo' essere letto solo come Object, e non si puo' scrivere")
     void wildcardIllimitato() {
-        List<?> valori = new ArrayList<String>();
-        valori.add("Mario");
+        List<String> sorgente = new ArrayList<>();
+        sorgente.add("Mario");
+        sorgente.add("Luigi");
+
+        List<?> valori = sorgente;
 
         assertTrue(valori.get(0) instanceof String);
+        assertEquals(2, valori.size());
     }
 }

@@ -8,8 +8,10 @@ import java.util.Optional;
  * Il pattern matching per {@code instanceof} e' definitivo da <b>Java 16</b> (JEP 394).
  * Prima serviva un controllo e poi un cast; ora il cast è dentro il pattern.
  * <p>
- * Attenzione: {@code instanceof} non accetta {@code null} (darebbe {@code NullPointerException}),
- * e il pattern non puo' essere usato con {@code ||} tra due variabili diverse.
+ * Attenzione: {@code null instanceof Tipo} e' semplicemente {@code false}, non un
+ * {@code NullPointerException}, e in quel caso il pattern <b>non</b> viene assegnato.
+ * Inoltre un pattern non puo' essere usato nel ramo destro di un {@code ||} che ne nomina
+ * un altro pattern: la variabile non esiste ancora li'.
  */
 public final class InstanceofPattern {
 
@@ -64,8 +66,8 @@ public final class InstanceofPattern {
     }
 
     /**
-     * Combinare piu' condizioni: si scrive un {@code if} per ogni tipo.
-     * Con {@code ||} e lo stesso nome di variabile si puo' verificare piu' tipi insieme.
+     * Quando un solo tipo di controllo non basta, lo {@code switch} con pattern (Java 21)
+     * gestisce il {@code null} con un caso esplicito, che {@code instanceof} non permetteva.
      */
     public static boolean numeroPrimo(Object obj) {
         return switch (obj) {

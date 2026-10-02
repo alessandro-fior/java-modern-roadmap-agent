@@ -5,42 +5,15 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * Gerarchia <b>sealed</b>: definitiva da <b>Java 17</b> (JEP 409).
+ * Esempi su una gerarchia <b>sealed</b> (definitiva da Java 17, JEP 409) e sul
+ * <b>record pattern</b> (definitivo da Java 21, JEP 441).
  * <p>
- * {@code sealed} dice al compilatore: "questa gerarchia e' chiusa, gli unici sotto-tipi
- * sono questi". Il compilatore puo' allora verificare che ogni {@code switch} sia completo
- * e, se manca un caso, segnalarlo come <b>errore di compilazione</b> e non a runtime.
+ * Il tipo {@link Risultato} e' dichiarato in {@code Risultato.java}: in Java un tipo pubblico
+ * di primo livello deve stare in un file con lo stesso nome. Qui ci sono i metodi che lo
+ * descrivono e lo destrutturano.
  * <p>
- * {@code permits} e' obbligatorio per {@code sealed} non {@code non-sealed}. I sotto-tipi
- * possono essere {@code final} (che e' il default per i record), {@code sealed} a loro volta,
- * oppure {@code non-sealed} per riaprire la gerarchia.
- */
-public sealed interface Risultato permits Successo, Fallimento, InCorso {
-
-    String messaggio();
-
-    /**
-     * Record normale: chiuso per default, quindi puo' stare in un {@code permits} senza dirlo.
-     */
-    record Successo(String messaggio, Object valore) implements Risultato {
-    }
-
-    /**
-     * Record {@code non-sealed}: puo' essere a sua volta esteso.
-     */
-    non-sealed record Fallimento(String messaggio) implements Risultato {
-    }
-
-    /**
-     * Record normale, chiuso per default.
-     */
-    record InCorso(String messaggio, int percentuale) implements Risultato {
-    }
-}
-
-/**
- * {@code record pattern}: definitivi da <b>Java 21</b> (JEP 441).
- * Permette di destrutturare un record direttamente nella firma del caso.
+ * Il record pattern permette di destrutturare il record direttamente nella firma del caso.
+ * I componenti diventano variabili, quindi non serve un {@code instanceof} e un cast prima.
  */
 public final class SealedHierarchy {
 

@@ -7,8 +7,8 @@ import java.util.Set;
 /**
  * PRIMA / DOPO: la classe DTO tradizionale ({@link ClienteLegacy}) e il record ({@link ClienteRecord}).
  * <p>
- * I <b>record</b> sono definitivi da <b>Java 16</b> (JEP 395), dopo quattro round di preview
- * (Java 14, 15, 16 e la seconda preview in 15).
+ * I <b>record</b> sono definitivi da <b>Java 16</b> (JEP 395), dopo due round di preview
+ * (Java 14 e Java 15).
  * <p>
  * Un record descrive un <b>valore</b>: e' immutabile, ha identita' basata sui suoi campi ed e'
  * confrontabile con {@code equals} senza scrivere nulla.

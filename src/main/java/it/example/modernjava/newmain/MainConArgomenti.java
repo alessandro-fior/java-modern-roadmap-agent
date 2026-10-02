@@ -25,9 +25,8 @@ public final class MainConArgomenti {
     }
 
     /**
-     * Versione "vecchia" ma comunque valida: {@code static} + {@code String[]} + {@code public}.
-     * Tutte le dodici forme ({@code static} o no, {@code public} o no, {@code String[]} o
-     * {@code String...}, con o senza parametri) sono launchable da Java 25.
+     * Il calcolo ausiliario resta un normale metodo di istanza: la firma del {@code main}
+     * non ha niente a che fare con il resto della classe.
      */
     private double mediaNumerica(String[] args) {
         double somma = 0;

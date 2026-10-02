@@ -41,9 +41,6 @@ public final class CustomerAnalyzer {
     private CustomerAnalyzer() {
     }
 
-    private CustomerAnalyzer() {
-    }
-
     // ------------------------------------------------------- 1. stampa di tutti i clienti
 
     public static String stampaTutti(List<Cliente> clienti) {
@@ -187,7 +184,7 @@ public final class CustomerAnalyzer {
         out.append("Maggiorenni: ").append(riepilogo.maggiorenni()).append(System.lineSeparator());
         out.append("Minorenni: ").append(riepilogo.minorenni()).append(System.lineSeparator());
         out.append("Eta' media: ")
-                .append(riepilogo.etaMedia().map(String::valueOf).orElse("n.d."))
+                .append(riepilogo.etaMedia().map(eta -> String.valueOf((double) eta)).orElse("n.d."))
                 .append(System.lineSeparator());
         out.append("Nomi dei maggiorenni: ").append(riepilogo.nomiMaggiorenni()).append(System.lineSeparator());
         out.append("Clienti per citta': ").append(riepilogo.perCitta()).append(System.lineSeparator());

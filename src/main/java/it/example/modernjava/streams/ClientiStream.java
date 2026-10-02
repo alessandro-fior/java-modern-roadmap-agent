@@ -176,7 +176,7 @@ public final class ClientiStream {
      */
     public static <T> List<T> estrai(Function<Cliente, T> estrazione) {
         return CLIENTI.stream()
-                .map(espressione -> estrazione.apply(espressione))
+                .map(esrazione)
                 .toList();
     }
 

@@ -53,7 +53,10 @@ public final class RawTypeVsGeneric {
     }
 
     /**
-     * Perche' il raw type e' pericoloso: l'errore emerge solo a runtime.
+     * Perche' il raw type e' scomodo: la perdita di informazione si paga quando si legge.
+     * Con i Generics {@code get} restituisce gia' il tipo dichiarato, quindi non serve
+     * ne' il cast esplicito ne' il {@code instanceof} di difesa: il compilatore ha
+     * gia' garantito che la lista contenga solo {@code String}.
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
     public static void erroreDiRuntime() {
@@ -63,9 +66,8 @@ public final class RawTypeVsGeneric {
         Object primo = lista.get(0);
 
         System.out.println("Valore grezzo letto come Object: " + primo);
-        // Con Generics questo codice non sarebbe nemmeno scrivibile:
-        // List<String> nomi = new ArrayList<>();
-        // Object primo = nomi.get(0);   // String primo -> errore di COMPILAZIONE
+        // Con i Generics la lettura e' gia' tipizzata: String primo = nomi.get(0);
+        // e se la lista contenesse qualcos'altro non compilerebbe.
     }
 
     public static void main(String[] args) {
